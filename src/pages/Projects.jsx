@@ -6,7 +6,8 @@ function Projects() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
 
- console.log('ENV complet:', import.meta.env)
+  useEffect(() => {
+    console.log('ENV complet:', import.meta.env)
     axios
       .get(`${import.meta.env.VITE_API_URL}/api/projects/`)
       .then((response) => {
@@ -18,7 +19,6 @@ function Projects() {
         setLoading(false)
       })
   }, [])
-
   if (loading) {
     return (
       <div className="container py-5">

@@ -6,9 +6,9 @@ function Projects() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
 
-  useEffect(() => {
+ console.log('ENV complet:', import.meta.env)
     axios
-      .get('http://127.0.0.1:8000/api/projects/')
+      .get(`${import.meta.env.VITE_API_URL}/api/projects/`)
       .then((response) => {
         setProjects(response.data)
         setLoading(false)

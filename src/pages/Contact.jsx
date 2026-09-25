@@ -21,7 +21,7 @@ function Contact() {
     setErrors({})
 
     axios
-      .post('http://127.0.0.1:8000/api/contact/', formData)
+     .post(`${import.meta.env.VITE_API_URL}/api/contact/`, formData)
       .then(() => {
         setStatus('success')
         setFormData({ name: '', email: '', subject: '', message: '' })

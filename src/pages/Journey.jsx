@@ -10,7 +10,7 @@ function Journey() {
 
   useEffect(() => {
     axios
-      .get('http://127.0.0.1:8000/api/skills/')
+     .get(`${import.meta.env.VITE_API_URL}/api/skills/`)
       .then((response) => {
         setSkills(response.data)
         setLoading(false)

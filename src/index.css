@@ -130,3 +130,41 @@ body {
   border-top: 1px solid var(--border);
   margin-top: 40px;
 }
+.navbar-prodev {
+  background: rgba(10, 14, 26, 0.9) !important;
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(8px);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  padding: 12px 0;
+}
+
+.brand-logo {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--violet), var(--cyan));
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: #fff;
+  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
+}
+
+.navbar-prodev .nav-link {
+  color: var(--muted);
+  border-radius: 10px;
+  padding: 8px 16px !important;
+  transition: all 0.2s;
+}
+
+.navbar-prodev .nav-link:hover {
+  color: #fff;
+}
+
+.navbar-prodev .nav-link.active {
+  background: rgba(139, 92, 246, 0.15);
+  color: #a78bfa;
+}

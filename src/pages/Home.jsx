@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-
+import { ArrowRight, Mail, FolderGit2, Code2, Rocket, Wrench } from "lucide-react";
 const stats = [
   { value: "2", label: "Projets livrés" },
   { value: "9", label: "Compétences" },

@@ -6,10 +6,11 @@ function Navbar() {
   const close = () => setOpen(false);
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav className="navbar navbar-expand-lg navbar-dark navbar-prodev">
       <div className="container">
-        <NavLink className="navbar-brand" to="/" onClick={close}>
-          ProDev
+        <NavLink className="navbar-brand d-flex align-items-center gap-2" to="/" onClick={close}>
+          <span className="brand-logo">P</span>
+          <span className="fw-bold">ProDev</span>
         </NavLink>
 
         <button
@@ -23,7 +24,7 @@ function Navbar() {
         </button>
 
         <div className={`collapse navbar-collapse ${open ? "show" : ""}`}>
-          <ul className="navbar-nav ms-auto">
+          <ul className="navbar-nav ms-auto gap-lg-1">
             <li className="nav-item">
               <NavLink className="nav-link" to="/" end onClick={close}>Accueil</NavLink>
             </li>

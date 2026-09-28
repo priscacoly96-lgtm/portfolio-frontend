@@ -1,40 +1,64 @@
 import { Link } from "react-router-dom";
 
+const stats = [
+  { value: "2", label: "Projets livrés" },
+  { value: "9", label: "Compétences" },
+  { value: "3", label: "Outils de déploiement" },
+];
+
+const stack = [
+  "Django",
+  "Django REST Framework",
+  "React",
+  "JavaScript",
+  "Bootstrap",
+  "PostgreSQL",
+  "Git / GitHub",
+  "Vercel / Render",
+];
+
 function Home() {
   return (
     <div>
       {/* Hero */}
-      <section
-        className="text-center text-white d-flex align-items-center justify-content-center"
-        style={{
-          background: "linear-gradient(135deg, #1a1a2e, #16213e)",
-          minHeight: "70vh",
-        }}
-      >
-        <div className="container">
-          <h1 className="display-4 fw-bold mb-3">
-            Développeur Full-Stack & DevOps Engineer
+      <section className="hero-section">
+        <div className="container text-center">
+          <span className="hero-badge">Bienvenue sur mon portfolio</span>
+          <h1 className="hero-title">
+            Développeur <span className="text-gradient">Full-Stack</span>
+            <br />& DevOps Engineer
           </h1>
-          <p className="lead mb-4">
+          <p className="hero-subtitle">
             Je conçois et développe des applications web modernes, du backend
             à l'infrastructure de déploiement.
           </p>
-          <div className="d-flex justify-content-center gap-3">
-            <Link to="/projets" className="btn btn-primary btn-lg">
-              Voir mes projets
+          <div className="d-flex justify-content-center flex-wrap gap-3">
+            <Link to="/projets" className="btn btn-gradient btn-lg">
+              Explorer mes projets →
             </Link>
-            <Link to="/contact" className="btn btn-outline-light btn-lg">
+            <Link to="/contact" className="btn btn-outline-light btn-lg btn-ghost">
               Me contacter
             </Link>
+          </div>
+
+          <div className="row justify-content-center g-3 mt-5">
+            {stats.map((s) => (
+              <div className="col-6 col-md-3" key={s.label}>
+                <div className="stat-card">
+                  <div className="stat-value">{s.value}</div>
+                  <div className="stat-label">{s.label}</div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Présentation */}
       <section className="container py-5">
-        <div className="row align-items-center">
+        <div className="row align-items-center g-4">
           <div className="col-md-6">
-            <h2 className="fw-bold mb-3">Qui suis-je ?</h2>
+            <h2 className="section-title">Qui suis-je ?</h2>
             <p className="text-muted">
               Passionnée par le développement web, je conçois des
               applications complètes en combinant un backend Django robuste
@@ -44,23 +68,10 @@ function Home() {
             </p>
           </div>
           <div className="col-md-6">
-            <h2 className="fw-bold mb-3">Ma stack technique</h2>
+            <h2 className="section-title">Stack technique</h2>
             <div className="d-flex flex-wrap gap-2">
-              {[
-                "Django",
-                "Django REST Framework",
-                "React",
-                "JavaScript",
-                "Bootstrap",
-                "PostgreSQL",
-                "Git / GitHub",
-                "Vercel / Render",
-              ].map((tech) => (
-                <span
-                  key={tech}
-                  className="badge bg-dark text-white px-3 py-2"
-                  style={{ fontSize: "0.9rem" }}
-                >
+              {stack.map((tech) => (
+                <span key={tech} className="tech-pill">
                   {tech}
                 </span>
               ))}
@@ -69,16 +80,40 @@ function Home() {
         </div>
       </section>
 
-      {/* Aperçu projet */}
-      <section className="bg-light py-5">
-        <div className="container text-center">
-          <h2 className="fw-bold mb-3">Projet phare</h2>
+      {/* Projet phare */}
+      <section className="container py-5">
+        <div className="d-flex justify-content-between align-items-end mb-4">
+          <div>
+            <h2 className="section-title mb-1">Projet à la une</h2>
+            <p className="text-muted mb-0">Une de mes réalisations les plus marquantes</p>
+          </div>
+          <Link to="/projets" className="link-violet">
+            Voir tout →
+          </Link>
+        </div>
+        <div className="card featured-card">
+          <div className="card-body p-4">
+            <span className="tag-violet">Full-Stack</span>
+            <h3 className="fw-bold mt-2">RED Product</h3>
+            <p className="text-muted mb-0">
+              Dashboard d'administration d'hôtels, du design Figma au
+              déploiement en production.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact */}
+      <section className="cta-section text-center">
+        <div className="container">
+          <h2 className="hero-title" style={{ fontSize: "2.5rem" }}>
+            Travaillons ensemble
+          </h2>
           <p className="text-muted mb-4">
-            RED Product — dashboard d'administration d'hôtels, du design
-            Figma au déploiement en production.
+            Une opportunité, un projet, une question ? Écrivez-moi.
           </p>
-          <Link to="/projets" className="btn btn-dark">
-            Découvrir tous mes projets
+          <Link to="/contact" className="btn btn-gradient btn-lg">
+            Envoyer un message →
           </Link>
         </div>
       </section>

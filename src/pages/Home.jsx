@@ -23,11 +23,14 @@ function Home() {
       {/* Hero */}
       <section className="hero-section">
         <div className="container text-center">
-          <span className="hero-badge">Bienvenue sur mon portfolio</span>
-          <h1 className="hero-title">
-            Développeur <span className="text-gradient">Full-Stack</span>
-            <br />& DevOps Engineer
-          </h1>
+              <span className="hero-available">
+  <span className="hero-available-dot"></span>
+  Disponible pour opportunités
+</span>
+<h1 className="hero-title">
+  Développeur <span className="text-violet">Full-Stack</span>
+  <br />&amp; <span className="text-cyan">DevOps Engineer</span>
+</h1>
           <p className="hero-subtitle">
             Je conçois et développe des applications web modernes, du backend
             à l'infrastructure de déploiement.

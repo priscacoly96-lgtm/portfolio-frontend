@@ -1,12 +1,20 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Mail, FolderGit2, Code2, Rocket, Wrench } from "lucide-react";
+import {
+  ArrowRight,
+  Mail,
+  FolderGit2,
+  Code2,
+  Rocket,
+  Wrench,
+  Sparkles,
+} from "lucide-react";
 
 const stack = [
   "Django",
   "Python",
-  "Django REST Framework",
-  "React",
   "JavaScript",
+  "React",
+  "Django REST Framework",
   "Bootstrap",
   "PostgreSQL",
   "Git / GitHub",
@@ -64,6 +72,18 @@ function Home() {
           </div>
         </div>
       </section>
+
+      {/* Bandeau qui défile */}
+      <div className="marquee">
+        <div className="marquee-track">
+          {[...stack, ...stack].map((tech, i) => (
+            <span className="marquee-item" key={i}>
+              <Sparkles size={18} className="marquee-icon" />
+              {tech}
+            </span>
+          ))}
+        </div>
+      </div>
 
       {/* Présentation */}
       <section className="container py-5">

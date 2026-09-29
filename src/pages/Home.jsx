@@ -1,3 +1,5 @@
+import { useState, useEffect } from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
 import {
   ArrowRight,
@@ -29,6 +31,22 @@ const stats = [
 ];
 
 function Home() {
+  const [projects, setProjects] = useState([]);
+
+useEffect(() => {
+const url = `${import.meta.env.VITE_API_URL}/api/projects/`;
+ 
+
+  axios
+    .get(url)
+    .then((res) => {
+      
+      const data = Array.isArray(res.data) ? res.data : res.data.results || [];
+      setProjects(data.slice(0, 3));
+    })
+    .catch((err) => console.error("Erreur API :", err));
+}, []);
+
   return (
     <div>
       {/* Hero */}
@@ -85,6 +103,42 @@ function Home() {
         </div>
       </div>
 
+      {/* Projets à la une */}
+      <section className="container py-5">
+        <div className="d-flex justify-content-between align-items-end mb-4">
+          <div>
+            <h2 className="featured-title">Projets à la une</h2>
+            <p className="featured-subtitle mb-0">
+              Une sélection de mes réalisations les plus marquantes
+            </p>
+          </div>
+          <Link to="/projets" className="link-violet">
+            Voir tout <ArrowRight size={16} />
+          </Link>
+        </div>
+
+        <div className="row g-4">
+          {projects.map((project) => (
+            <div className="col-12 col-md-6 col-lg-4" key={project.id}>
+              <Link to={`/projets/${project.id}`} className="home-project-card">
+                <div className="home-project-image">
+                  {project.image && (
+                    <img src={project.image} alt={project.title} />
+                  )}
+                </div>
+                <div className="home-project-body">
+                  <span className="home-project-category">
+                    {project.category}
+                  </span>
+                  <h3 className="home-project-title">{project.title}</h3>
+                  <p className="home-project-desc">{project.description}</p>
+                </div>
+              </Link>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* Présentation */}
       <section className="container py-5">
         <div className="row align-items-center g-4">
@@ -107,31 +161,6 @@ function Home() {
                 </span>
               ))}
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Projet phare */}
-      <section className="container py-5">
-        <div className="d-flex justify-content-between align-items-end mb-4">
-          <div>
-            <h2 className="section-title mb-1">Projet à la une</h2>
-            <p className="text-muted mb-0">
-              Une de mes réalisations les plus marquantes
-            </p>
-          </div>
-          <Link to="/projets" className="link-violet">
-            Voir tout →
-          </Link>
-        </div>
-        <div className="card featured-card">
-          <div className="card-body p-4">
-            <span className="tag-violet">Full-Stack</span>
-            <h3 className="fw-bold mt-2">RED Product</h3>
-            <p className="text-muted mb-0">
-              Dashboard d'administration d'hôtels, du design Figma au
-              déploiement en production.
-            </p>
           </div>
         </div>
       </section>

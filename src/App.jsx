@@ -5,6 +5,7 @@ import Home from './pages/Home'
 import Projects from './pages/Projects'
 import Journey from './pages/Journey'
 import Contact from './pages/Contact'
+import ProjectDetail from "./pages/ProjectDetail";
 
 function App() {
   return (
@@ -13,12 +14,13 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/projets" element={<Projects />} />
+        <Route path="/projets/:id" element={<ProjectDetail />} />
         <Route path="/parcours" element={<Journey />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   )
 }
 
 export default App
-// redeploy fix

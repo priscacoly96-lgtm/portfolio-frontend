@@ -141,16 +141,17 @@ function Home() {
       {/* Stack technique */}
       <TechStack />
 
-      {/* Contact */}
+               {/* Contact */}
       <section className="cta-section text-center">
         <div className="container">
-          <h2 className="hero-title" style={{ fontSize: "2.5rem" }}>
-            Travaillons ensemble
-          </h2>
-          <p className="text-muted mb-4">
+          <span className="cta-badge">
+            <Mail size={16} /> Contact
+          </span>
+          <h2 className="cta-title">Travaillons ensemble</h2>
+          <p className="cta-text">
             Une opportunité, un projet, une question ? Écrivez-moi.
           </p>
-          <Link to="/contact" className="btn btn-gradient btn-lg">
+          <Link to="/contact" className="btn btn-gradient btn-lg cta-btn">
             Envoyer un message <ArrowRight size={18} className="ms-2" />
           </Link>
         </div>

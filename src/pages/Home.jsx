@@ -10,6 +10,7 @@ import {
   Wrench,
   Sparkles,
 } from "lucide-react";
+import TechStack from "../components/TechStack";
 
 const stack = [
   "Django",
@@ -33,19 +34,17 @@ const stats = [
 function Home() {
   const [projects, setProjects] = useState([]);
 
-useEffect(() => {
-const url = `${import.meta.env.VITE_API_URL}/api/projects/`;
- 
+  useEffect(() => {
+    const url = `${import.meta.env.VITE_API_URL}/api/projects/`;
 
-  axios
-    .get(url)
-    .then((res) => {
-      
-      const data = Array.isArray(res.data) ? res.data : res.data.results || [];
-      setProjects(data.slice(0, 3));
-    })
-    .catch((err) => console.error("Erreur API :", err));
-}, []);
+    axios
+      .get(url)
+      .then((res) => {
+        const data = Array.isArray(res.data) ? res.data : res.data.results || [];
+        setProjects(data.slice(0, 3));
+      })
+      .catch((err) => console.error("Erreur API :", err));
+  }, []);
 
   return (
     <div>
@@ -139,31 +138,8 @@ const url = `${import.meta.env.VITE_API_URL}/api/projects/`;
         </div>
       </section>
 
-      {/* Présentation */}
-      <section className="container py-5">
-        <div className="row align-items-center g-4">
-          <div className="col-md-6">
-            <h2 className="section-title">Qui suis-je ?</h2>
-            <p className="text-muted">
-              Passionnée par le développement web, je conçois des applications
-              complètes en combinant un backend Django robuste et des
-              interfaces React modernes. J'aime aussi explorer les enjeux du
-              déploiement (Vercel, Render, Cloudinary) pour livrer des projets
-              fonctionnels de bout en bout.
-            </p>
-          </div>
-          <div className="col-md-6">
-            <h2 className="section-title">Stack technique</h2>
-            <div className="d-flex flex-wrap gap-2">
-              {stack.map((tech) => (
-                <span key={tech} className="tech-pill">
-                  {tech}
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Stack technique */}
+      <TechStack />
 
       {/* Contact */}
       <section className="cta-section text-center">

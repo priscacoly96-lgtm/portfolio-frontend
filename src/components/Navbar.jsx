@@ -8,10 +8,10 @@ function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark navbar-prodev">
       <div className="container">
-        <NavLink className="navbar-brand d-flex align-items-center gap-2" to="/" onClick={close}>
-          <span className="brand-logo">P</span>
-          <span className="fw-bold">ProDev</span>
-        </NavLink>
+       <NavLink className="navbar-brand d-flex align-items-center gap-3" to="/" onClick={close}>
+  <span className="brand-logo">P</span>
+  <span className="brand-name">ProDev</span>
+</NavLink>
 
         <button
           className="navbar-toggler"

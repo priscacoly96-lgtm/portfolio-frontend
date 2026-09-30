@@ -510,7 +510,10 @@ body {
 }
 
 .footer-icons a {
+  display: flex;
+  align-items: center;
   color: #7c8aa8;
+  text-decoration: none;
   transition: color 0.2s;
 }
 
@@ -520,7 +523,44 @@ body {
 
 .footer-bottom {
   padding-top: 1.5rem;
-  text-align: center;
+  text-align: left;
   color: #5b6785;
   font-size: 0.9rem;
+}
+/* ===== Section Contact (version finale) ===== */
+.cta-section {
+  padding: 110px 0;
+  background: none;
+  border-top: 1px solid #1a2035;
+  border-bottom: 1px solid #1a2035;
+}
+
+.cta-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.1rem;
+  border-radius: 999px;
+  background: rgba(139, 92, 246, 0.12);
+  color: #8b5cf6;
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 1.5rem;
+}
+
+.cta-title {
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+.cta-text {
+  font-size: 1.25rem;
+  color: #7c8aa8;
+  margin-bottom: 2.5rem;
+}
+
+.cta-btn {
+  box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
 }

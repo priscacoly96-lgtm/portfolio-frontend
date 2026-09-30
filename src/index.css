@@ -404,3 +404,16 @@ body {
   font-size: 0.8rem;
   font-weight: 600;
 }
+   /* ===== Images des cartes de la page Projets ===== */
+   .card {
+     overflow: hidden;
+   }
+
+   .card img,
+   .project-link img {
+     display: block;
+     width: 100%;
+     height: 220px;
+     object-fit: cover;
+     object-position: center;
+   }

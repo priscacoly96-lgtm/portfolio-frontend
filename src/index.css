@@ -456,3 +456,71 @@ body {
   color: #7c8aa8;
   font-size: 0.95rem;
 }
+/* ===== Pied de page ===== */
+.site-footer {
+  padding: 3rem 0 2rem;
+  background: #0a0e1a;
+}
+
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #1a2035;
+}
+
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.footer-logo {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(135deg, #8b5cf6, #38bdf8);
+}
+
+.footer-name {
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.15rem;
+}
+
+.footer-location {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: #7c8aa8;
+  font-size: 0.95rem;
+}
+
+.footer-icons {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.footer-icons a {
+  color: #7c8aa8;
+  transition: color 0.2s;
+}
+
+.footer-icons a:hover {
+  color: #fff;
+}
+
+.footer-bottom {
+  padding-top: 1.5rem;
+  text-align: center;
+  color: #5b6785;
+  font-size: 0.9rem;
+}

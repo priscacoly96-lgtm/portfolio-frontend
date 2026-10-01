@@ -703,3 +703,158 @@ body {
   .search-row { flex-direction: column; }
   .filters-btn { justify-content: center; }
 }
+/* ===== Cartes de projet (style Base44) ===== */
+.pc {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: #0f1226;
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  border-radius: 24px;
+  overflow: hidden;
+  transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+}
+.pc:hover {
+  transform: translateY(-4px);
+  border-color: rgba(139, 92, 246, 0.7);
+  box-shadow: 0 10px 40px rgba(139, 92, 246, 0.25);
+}
+
+/* Image */
+.pc-cover {
+  position: relative;
+  height: 220px;
+  overflow: hidden;
+  background: #1a1d33;
+}
+.pc-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.pc-cover-empty {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6b7280;
+  background: linear-gradient(180deg, #e5e7eb, #9ca3af);
+}
+.pc-cover-fade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 40%, #0f1226 100%);
+  pointer-events: none;
+}
+
+/* Badges */
+.pc-badges {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  right: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 2;
+}
+.pc-cat,
+.pc-featured {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  backdrop-filter: blur(6px);
+}
+.cat-fullstack { background: rgba(139, 92, 246, 0.25); color: #c4b5fd; }
+.cat-front     { background: rgba(59, 130, 246, 0.25); color: #93c5fd; }
+.cat-back      { background: rgba(34, 197, 94, 0.25);  color: #86efac; }
+.cat-devops    { background: rgba(249, 115, 22, 0.25); color: #fdba74; }
+.pc-featured   { background: rgba(139, 92, 246, 0.3);  color: #ddd6fe; }
+
+/* Corps */
+.pc-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 8px 24px 24px;
+}
+.pc-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+.pc-title {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+.pc-title a {
+  color: #fff;
+  text-decoration: none;
+}
+.pc:hover .pc-title a { color: #a78bfa; }
+.pc-arrow { color: #9ca3af; flex-shrink: 0; margin-top: 4px; }
+.pc:hover .pc-arrow { color: #a78bfa; }
+
+.pc-desc {
+  color: #9ca3af;
+  margin: 12px 0 16px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Tags */
+.pc-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+.pc-tag {
+  background: rgba(255, 255, 255, 0.08);
+  color: #d1d5db;
+  padding: 4px 14px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+/* Pied de carte */
+.pc-footer {
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.pc-stats {
+  display: flex;
+  gap: 20px;
+  color: #9ca3af;
+}
+.pc-stats span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.pc-links {
+  display: flex;
+  gap: 16px;
+}
+/* Les icônes passent AU-DESSUS du lien qui recouvre la carte */
+.pc-links a {
+  position: relative;
+  z-index: 3;
+  color: #9ca3af;
+}
+.pc-links a:hover { color: #a78bfa; }

@@ -1,128 +1,159 @@
 import { useState } from 'react'
 import axios from 'axios'
+import { Zap, Send, Mail, MapPin } from 'lucide-react'
+
+// À modifier avec tes vraies infos
+const EMAIL = '' // mets ton vrai e-mail entre les guillemets, sinon la carte Email ne s'affiche pas
+const LOCATION = 'Dakar, Sénégal'
+const GITHUB_URL = 'https://github.com/priscacoly96-lgtm'
+
+function GithubIcon({ size = 26 }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+      <path d="M9 18c-4.51 2-5-2-7-2" />
+    </svg>
+  )
+}
+
+const emptyForm = { name: '', email: '', subject: '', message: '' }
 
 function Contact() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: '',
-  })
+  const [form, setForm] = useState(emptyForm)
   const [status, setStatus] = useState('')
-  const [errors, setErrors] = useState({})
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value })
-  }
+  const handleChange = (e) =>
+    setForm({ ...form, [e.target.name]: e.target.value })
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     setStatus('sending')
-    setErrors({})
-
-    axios
-      .post(`${import.meta.env.VITE_API_URL}/api/contact/`, formData)
-      .then(() => {
-        setStatus('success')
-        setFormData({ name: '', email: '', subject: '', message: '' })
-      })
-      .catch((error) => {
-        setStatus('error')
-        if (error.response && error.response.data) {
-          setErrors(error.response.data)
-        }
-      })
+    try {
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/contact/`, form)
+      setStatus('success')
+      setForm(emptyForm)
+    } catch {
+      setStatus('error')
+    }
   }
 
   return (
-    <div className="container py-5">
-      <div className="mb-5">
-        <span className="hero-badge">Contact</span>
-        <h1 className="section-title mb-1" style={{ fontSize: '2.5rem' }}>
-          Travaillons ensemble
-        </h1>
-        <p className="text-muted mb-0">
+    <div className="container ct-page">
+      <div className="ct-head">
+        <span className="ct-badge">
+          <Zap size={18} /> Contact
+        </span>
+        <h1 className="ct-title">Travaillons ensemble</h1>
+        <p className="ct-subtitle">
           Une opportunité, un projet, une question ? Écrivez-moi.
         </p>
       </div>
 
-      {status === 'success' && (
-        <div className="alert alert-success col-lg-8">
-          Merci ! Votre message a bien été envoyé.
-        </div>
-      )}
-      {status === 'error' && Object.keys(errors).length === 0 && (
-        <div className="alert alert-danger col-lg-8">
-          Une erreur est survenue. Réessayez plus tard.
-        </div>
-      )}
-
-      <div className="card contact-card col-lg-8">
-        <form onSubmit={handleSubmit} className="p-4">
-          <div className="mb-3">
-            <label className="form-label">Nom</label>
+      <form className="ct-form" onSubmit={handleSubmit}>
+        <div className="ct-row">
+          <div className="ct-field">
+            <label htmlFor="name">Nom complet</label>
             <input
-              type="text"
+              id="name"
               name="name"
-              value={formData.name}
-              onChange={handleChange}
-              className={'form-control' + (errors.name ? ' is-invalid' : '')}
-              required
-            />
-            {errors.name && (
-              <div className="invalid-feedback">{errors.name[0]}</div>
-            )}
-          </div>
-
-          <div className="mb-3">
-            <label className="form-label">Email</label>
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              className={'form-control' + (errors.email ? ' is-invalid' : '')}
-              required
-            />
-            {errors.email && (
-              <div className="invalid-feedback">{errors.email[0]}</div>
-            )}
-          </div>
-
-          <div className="mb-3">
-            <label className="form-label">Sujet (facultatif)</label>
-            <input
               type="text"
-              name="subject"
-              value={formData.subject}
+              placeholder="Votre nom"
+              value={form.name}
               onChange={handleChange}
-              className="form-control"
+              required
             />
           </div>
-
-          <div className="mb-4">
-            <label className="form-label">Message</label>
-            <textarea
-              name="message"
-              rows="5"
-              value={formData.message}
+          <div className="ct-field">
+            <label htmlFor="email">Email</label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              placeholder="vous@email.com"
+              value={form.email}
               onChange={handleChange}
-              className={'form-control' + (errors.message ? ' is-invalid' : '')}
               required
-            ></textarea>
-            {errors.message && (
-              <div className="invalid-feedback">{errors.message[0]}</div>
-            )}
+            />
           </div>
+        </div>
 
-                  <button
-            type="submit"
-            className="btn btn-gradient btn-lg"
-            disabled={status === 'sending'}
-          >
-            {status === 'sending' ? 'Envoi en cours...' : 'Envoyer le message'}
-          </button>
-        </form>
+        <div className="ct-field">
+          <label htmlFor="subject">Sujet</label>
+          <input
+            id="subject"
+            name="subject"
+            type="text"
+            placeholder="Objet du message"
+            value={form.subject}
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        <div className="ct-field">
+          <label htmlFor="message">Message</label>
+          <textarea
+            id="message"
+            name="message"
+            rows="6"
+            placeholder="Votre message..."
+            value={form.message}
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        <button
+          type="submit"
+          className="ct-send"
+          disabled={status === 'sending'}
+        >
+          <Send size={20} />
+          {status === 'sending' ? 'Envoi...' : 'Envoyer le message'}
+        </button>
+
+        {status === 'success' && (
+          <p className="ct-msg ct-ok">Message envoyé avec succès, merci !</p>
+        )}
+        {status === 'error' && (
+          <p className="ct-msg ct-ko">
+            Une erreur est survenue. Vérifie les champs et réessaie.
+          </p>
+        )}
+      </form>
+
+                 <div className="ct-infos">
+        <div className="ct-info">
+          <Mail size={28} className="ct-info-violet" />
+          <h3>Email</h3>
+          <p>{EMAIL}</p>
+        </div>
+        <div className="ct-info">
+          <MapPin size={28} className="ct-info-blue" />
+          <h3>Localisation</h3>
+          <p>{LOCATION}</p>
+        </div>
+        <a
+          className="ct-info"
+          href={GITHUB_URL}
+          target="_blank"
+          rel="noreferrer"
+        >
+          <span className="ct-info-violet">
+            <GithubIcon />
+          </span>
+          <h3>Réseaux</h3>
+          <p>GitHub</p>
+        </a>
       </div>
     </div>
   )
